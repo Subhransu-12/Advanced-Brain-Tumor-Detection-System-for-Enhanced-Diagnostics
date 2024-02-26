@@ -3,59 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Brain Tumor Analysis</title>
+    <title>Brain Tumor Detection</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin: 0;
-            padding: 0;
-            background-image: url('./src/PHOTO-2024-02-13-15-24-34.jpg');
-            background-size: cover;
-            background-position: center;
-        }
-        header {
-            background-color: #333;
-            color: #fff;
-            padding: 20px 0;
-        }
-        header h1 {
-            margin: 0;
-        }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: rgba(255, 255, 255, 0.8); /* Adding a semi-transparent white background to the container */
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        /* ... (your existing styles) ... */
+        #imagePreview {
             margin-top: 20px;
-        }
-        img {
             max-width: 100%;
-            height: auto;
-            margin-top: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        h2 {
-            color: #333;
-            margin-top: 30px;
-        }
-        p, ul {
-            color: #666;
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>Brain Tumor Analysis</h1>
-    </header>
     <div class="container">
-        <p>Welcome to Brain Tumor Analysis</p>
-        <p>Click below to start analyzing brain tumor images.</p>
-        <a href="analyzing.html">Start Analyzing</a>
+        <h1>Brain Tumor Detection</h1>
+        <h2>Welcome to Brain Tumor Detection</h2>
+        <p>Upload your MRI image and click "Scan" to get started.</p>
+        <input type="file" id="fileInput" accept=".jpg, .jpeg, .png, .pdf" onchange="previewImage()">
+        <button class="upload-button" onclick="scanMRI()">Scan MRI</button>
+        <div class="result" id="result"></div>
+        <div class="stage-details" id="errorMessage" style="color: red;"></div>
+        <img id="imagePreview" alt="Preview" style="display: none;">
     </div>
+
+    <script>
+        function previewImage() {
+            const fileInput = document.getElementById('fileInput');
+            const preview = document.getElementById('imagePreview');
+            const file = fileInput.files[0];
+
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    preview.src = e.target.result;
+                    preview.style.display = 'block';
+                };
+
+                reader.readAsDataURL(file);
+            } else {
+                preview.style.display = 'none';
+            }
+        }
+
+        function scanMRI() {
+            const fileInput = document.getElementById('fileInput');
+            const file = fileInput.files[0];
+
+            if (file) {
+                const pages = ['stage1.html', 'stage2.html', 'stage3.html', 'stage4.html'];
+                const randomPage = pages[Math.floor(Math.random() * pages.length)];
+                window.location.href = randomPage;
+            } else {
+                const errorMessage = document.getElementById('errorMessage');
+                errorMessage.innerText = 'Please upload your Brain MRI report.';
+            }
+        }
+    </script>
 </body>
 </html>
 
