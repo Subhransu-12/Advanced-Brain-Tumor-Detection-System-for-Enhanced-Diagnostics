@@ -1,85 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Report -3</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
-        .container {
-            max-width: 800px;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            text-align: justify;
-        }
-        h1, h2, h3, p {
-            margin-bottom: 20px;
-        }
-        h1 {
-            color: #333;
-            font-size: 36px;
-            text-align: center;
-        }
-        h2 {
-            color: #555;
-            font-size: 24px;
-        }
-        h3 {
-            color: #007bff;
-            font-size: 20px;
-        }
-        p {
-            color: #777;
-            font-size: 18px;
-        }
-        .chart {
-            margin-bottom: 40px;
-            text-align: center;
-        }
-        .chart img {
-            max-width: 100%;
-        }
-        .image {
-            margin-bottom: 20px;
-            text-align: center;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Medical Report - Stage 3 Brain Tumor</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f8f8f8;
+      color: #333;
+    }
+    .container {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    h1, h2, h3, p {
+      margin-bottom: 20px;
+    }
+    h1 {
+      color: #007bff;
+      font-size: 36px;
+      text-align: center;
+      border-bottom: 2px solid #007bff;
+      padding-bottom: 10px;
+      margin-bottom: 30px;
+    }
+    h2 {
+      color: #004085;
+      font-size: 24px;
+    }
+    h3 {
+      color: #0056b3;
+      font-size: 20px;
+    }
+    p {
+      font-size: 18px;
+    }
+    .chart {
+      margin-bottom: 40px;
+      text-align: center;
+    }
+    .chart img {
+      max-width: 100%;
+    }
+    .image {
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    .btn {
+      background-color: #007bff;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      display: block;
+      margin: 20px auto;
+    }
+    .btn:hover {
+      background-color: #0056b3;
+    }
+    .note {
+      font-style: italic;
+      color: #6c757d;
+    }
+    .footer {
+      text-align: center;
+      margin-top: 30px;
+      font-size: 14px;
+      color: #6c757d;
+      border-top: 1px solid #ddd;
+      padding-top: 20px;
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Your scan result is as follows :-</h1>
-        <h2>You have a Stage 3 of Brain Tumor</h2>
-        <h3>Overview :</h3>
-        <p>Grade 3 tumors are malignant and grow more rapidly than lower-grade tumors. Cells look notably abnormal under the microscope, and they are likely to infiltrate surrounding brain tissue. There is a higher chance of recurrence after treatment.</p>
-
-        <h3>Treatment:</h3>
-        <ul>
-            <li><strong>Surgery:</strong> To remove as much of the tumor as safely possible.</li>
-            <li><strong>Radiation therapy:</strong> Almost always used after surgery.</li>
-            <li><strong>Chemotherapy:</strong> Typically used along with radiation.</li>
-        </ul>
-
-        <div class="chart">
-            <p>Chart 1</p>
-            <img src="Images/chart7.png" alt="Chart 1">
-        </div>
-
-        <div class="chart">
-            <p>Chart 2</p>
-            <img src="Images/chart8.png" alt="Chart 2">
-        </div>
-        <div class="chart">
-            <p>Chart 3</p>
-            <img src="Images/chart9.png" alt="Chart 3">
-        </div>
+  <div class="container">
+    <h1>Medical Report - Stage 3 Brain Tumor</h1>
+    <h2>Diagnosis:</h2>
+    <p>A Grade 3 tumor has been detected. These tumors are malignant (cancerous) and grow more rapidly than lower-grade tumors. They are likely to infiltrate surrounding brain tissue, and there is a higher chance of recurrence after treatment.</p>
+    <h3>Treatment Options:</h3>
+    <ul>
+      <li><strong>Surgery:</strong> To remove as much of the tumor as safely possible.</li>
+      <li><strong>Radiation therapy:</strong> Almost always used after surgery.</li>
+      <li><strong>Chemotherapy:</strong> Typically used along with radiation.</li>
+    </ul>
+    <h2>Diagnostic Charts</h2>
+    <div class="chart">
+      <p>Chart 1 - Tumor Growth Over Time</p>
+      <img src="Images/chart7.png" alt="Chart 1">
     </div>
+    <div class="chart">
+      <p>Chart 2 - Comparison of Tumor Characteristics</p>
+      <img src="Images/chart8.png" alt="Chart 2">
+    </div>
+    <div class="chart">
+      <p>Chart 3 - Treatment Response</p>
+      <img src="Images/chart9.png" alt="Chart 3">
+    </div>
+    <p class="note">Note: These charts are illustrative and based on hypothetical data.</p>
+    <button class="btn">Download Full Report</button>
+    <div class="footer">
+      <p>Page 1</p>
+      <p>Created by: Ripan Saha</p> </div>
+  </div>
 </body>
 </html>

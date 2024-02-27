@@ -5,10 +5,65 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Brain Tumor Detection</title>
     <style>
-        /* ... (your existing styles) ... */
-        #imagePreview {
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-image: url('Images/background.jpg'); /* Background image URL */
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+        .container {
+            max-width: 600px;
+            padding: 40px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        h1, h2, p {
+            margin-bottom: 20px;
+        }
+        h1 {
+            color: #333;
+            font-size: 36px;
+        }
+        h2 {
+            color: #555;
+            font-size: 24px;
+        }
+        p {
+            color: #777;
+            font-size: 18px;
+        }
+        .upload-button {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .upload-button:hover {
+            background-color: #0056b3;
+        }
+        .result {
             margin-top: 20px;
-            max-width: 100%;
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+        }
+        .stage-details {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #555;
         }
     </style>
 </head>
@@ -16,33 +71,14 @@
     <div class="container">
         <h1>Brain Tumor Detection</h1>
         <h2>Welcome to Brain Tumor Detection</h2>
-        <p>Upload your MRI image and click "Scan" to get started.</p>
-        <input type="file" id="fileInput" accept=".jpg, .jpeg, .png, .pdf" onchange="previewImage()">
+        <p>Upload your MRI image and click "Scan MRI" to get started.</p>
+        <input type="file" id="fileInput" accept=".jpg, .jpeg, .png, .pdf">
         <button class="upload-button" onclick="scanMRI()">Scan MRI</button>
         <div class="result" id="result"></div>
         <div class="stage-details" id="errorMessage" style="color: red;"></div>
-        <img id="imagePreview" alt="Preview" style="display: none;">
     </div>
 
     <script>
-        function previewImage() {
-            const fileInput = document.getElementById('fileInput');
-            const preview = document.getElementById('imagePreview');
-            const file = fileInput.files[0];
-
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function (e) {
-                    preview.src = e.target.result;
-                    preview.style.display = 'block';
-                };
-
-                reader.readAsDataURL(file);
-            } else {
-                preview.style.display = 'none';
-            }
-        }
-
         function scanMRI() {
             const fileInput = document.getElementById('fileInput');
             const file = fileInput.files[0];
@@ -59,5 +95,3 @@
     </script>
 </body>
 </html>
-
-

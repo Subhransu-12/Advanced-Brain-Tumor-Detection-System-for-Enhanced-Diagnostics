@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Report -1</title>
+    <title>Medical Report - Stage 1 Brain Tumor</title>
     <style>
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
+            background-color: #f8f8f8;
+            color: #333;
         }
         .container {
             max-width: 800px;
@@ -18,26 +19,27 @@
             background-color: #fff;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            text-align: justify;
         }
         h1, h2, h3, p {
             margin-bottom: 20px;
         }
         h1 {
-            color: #333;
+            color: #007bff;
             font-size: 36px;
             text-align: center;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
         }
         h2 {
-            color: #555;
+            color: #004085;
             font-size: 24px;
         }
         h3 {
-            color: #007bff;
+            color: #0056b3;
             font-size: 20px;
         }
         p {
-            color: #777;
             font-size: 18px;
         }
         .chart {
@@ -51,34 +53,62 @@
             margin-bottom: 20px;
             text-align: center;
         }
+        .btn {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            display: block;
+            margin: 20px auto;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+        .note {
+            font-style: italic;
+            color: #6c757d;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 14px;
+            color: #6c757d;
+            border-top: 1px solid #ddd;
+            padding-top: 20px;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Your scan result is as follows :-</h1>
-        <h2>You have a Stage 1 of Brain Tumor</h2>
-        <h3>Overview :</h3>
-        <p>Grade 1 tumors are benign (non-cancerous) and very slow-growing. Cells appear mostly normal under a microscope, and they are unlikely to spread into surrounding brain tissue, leading to the best prognosis.</p>
-
-        <h3>Treatment:</h3>
+        <h1>Medical Report - Stage 1 Brain Tumor</h1>
+        <h2>Diagnosis:</h2>
+        <p>A Grade 1 tumor has been detected. These tumors are benign and exhibit slow growth. They are unlikely to spread into surrounding brain tissue.</p>
+        <h3>Treatment Options:</h3>
         <ul>
-            <li><strong>Surgery:</strong> Often the only treatment needed, especially if the tumor can be completely removed.</li>
-            <li><strong>Monitoring:</strong> If complete removal is not possible, doctors may monitor the tumor with regular imaging scans. If the tumor begins to grow, treatment may then become necessary.</li>
+            <li><strong>Surgery:</strong> Complete removal of the tumor through surgery is often the primary treatment.</li>
+            <li><strong>Monitoring:</strong> Regular imaging scans may be conducted to monitor the tumor's growth. Treatment may be initiated if there's evidence of growth.</li>
         </ul>
-
         <h2>Diagnostic Charts</h2>
         <div class="chart">
-            <p>Chart 1</p>
+            <p>Chart 1 - Tumor Growth Over Time</p>
             <img src="Images/chart1.png" alt="Chart 1">
         </div>
-
         <div class="chart">
-            <p>Chart 2</p>
+            <p>Chart 2 - Comparison of Tumor Characteristics</p>
             <img src="Images/chart2.png" alt="Chart 2">
         </div>
         <div class="chart">
-            <p>Chart 3</p>
+            <p>Chart 3 - Treatment Response</p>
             <img src="Images/chart3.png" alt="Chart 3">
+        </div>
+        <p class="note">Note: These charts are illustrative and based on hypothetical data.</p>
+        <button class="btn">Download Full Report</button>
+        <div class="footer">
+            <p>Page 1</p>
+            <p>Created by: Ripan Saha</p>
         </div>
     </div>
 </body>
