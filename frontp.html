@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Brain Tumor Detection</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://kit.fontawesome.com/dbed6b6114.js" crossorigin="anonymous"></script>
+
+    <!-- Embedded CSS -->
+    <style>
+        /* CSS code from style.css */
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&display=swap');
+
+        :root {
+            --transition: all 0.7s ease;
+            --yellow: #42d7f9;
+            --dark: #292826;
+        }
+
+        * {
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+            font-family: 'Playfair Display', serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            line-height: 1.6;
+        }
+        .btn{
+            font-size: 16px;
+            text-transform: uppercase;
+            font-weight: 600;
+            border: none;
+            border-radius: 5px;
+            padding: 10px;
+            width: 140px;
+            display: block;
+            margin: 15px auto;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .btn:hover{
+            opacity: 0.85;
+        }
+        .flex{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        h1, h2, h3, h4, h5, h6{
+            padding: 8px 0;
+        }
+        img{
+            width: 100%;
+            display: block;
+        }
+        @media(max-width: 500px){
+            body{
+                font-size: 14px;
+            }
+        }
+        
+        /* header */
+        .header{
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.2)), url("images/n.gif") center/cover no-repeat;
+            min-height: 100vh;
+            color: #fff;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            align-content: stretch;
+        }
+        .head-top{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .head-top span{
+            cursor: pointer;
+            letter-spacing: 2px;
+            transition: var(--transition);
+        }
+        .head-top span:hover{
+            color: var(--yellow);
+        }
+        .head-bottom{
+            flex: 1;
+            text-align: center;
+            width: 80vw;
+            margin: 0 auto;
+        }
+        .head-bottom h2{
+            padding: 22px 0;
+            font-size: 45px;
+            border-bottom: 1px solid #fff;
+        }
+        .head-bottom p{
+            opacity: 0.7;
+            font-size: 20px;
+            margin: 45px auto;
+            width: 60vw;
+        }
+        .head-btn{
+            margin: 20px 0;
+            font-size: 20px;
+            font-weight: bold;
+            border: 3px solid #fff;
+            background: transparent;
+            padding: 13px 20px;
+            background: rgba(0, 0, 0, 0.3);
+            color: #fff;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .head-btn:hover{
+            background: transparent;
+        }
+        @media(max-width: 500px){
+            .head-btn{
+                font-size: 17px;
+            }
+            .head-bottom h2{
+                font-size: 28px;
+            }
+            .head-bottom p{
+                font-size: 17px;
+                margin: 20px auto;
+            }
+        }
+        
+        /* side nav */
+        .sidenav{
+            background: var(--dark);
+            color: #fff;
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            right: -100%;
+            width: 300px;
+            padding: 20px;
+            transition: var(--transition);
+            z-index: 10;
+        }
+        
+        /********/
+        .sidenav.show{
+            right: 0;
+        }
+        /*************/
+        .cancel-btn{
+            position: absolute;
+            right: 25px;
+            font-size: 22px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .cancel-btn:hover{
+            opacity: 0.7;
+        }
+        .navbar{
+            margin-top: 50px;
+            list-style: none;
+            padding: 12px;
+        }
+        .navbar li a{
+            color: #fff;
+            text-transform: capitalize;
+            text-decoration: none;
+            padding: 15px 0;
+            display: block;
+            border-bottom: 0.5px solid rgba(249, 211, 66, 0.3);
+            opacity: 0.8;
+            letter-spacing: 1.5px;
+            transition: var(--transition);
+        }
+        .navbar li a:hover{
+            padding-left: 12px;
+        }
+        .sign-up, .log-in{
+            background: var(--yellow);
+            color: #fff;
+        }
+        @media(max-width: 400px){
+            .sidenav{
+                width: 100vw;
+            }
+        }
+        
+        /** title */
+        .title{
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 30px;
+            color: var(--yellow);
+            border-bottom: 5px solid var(--dark);
+            width: 235px;
+            margin: 15px 0;
+        }
+        
+        .sec-width{
+            width: 85vw;
+            margin: 0 auto!important;
+        }
+        
+        /* service */
+        .services{
+            margin: 40px 0;
+        }
+        .service{
+            display: flex;
+            margin: 30px 0;
+        }
+        .service-icon{
+            flex: 30%;
+            align-self: flex-start;
+            font-size: 48px;
+            color: #252525;
+        }
+        .service-content{
+            padding-left: 20px;
+        }
+        .service-content h2{
+            opacity: 0.7;
+        }
+        .service-content button{
+            margin-left: 0;
+            margin-right: 0;
+            background: var(--yellow);
+            color: #fff;
+        }
+        @media(min-width: 992px){
+            .services-container{
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                grid-column-gap: 30px;
+            }
+            .title h2{
+                font-size: 10px!important;
+            }
+        }
+        @media(max-width: 500px){
+            .title h2{
+                font-size: 24px;
+            }
+        }
+        
+        /* booking form */
+        .book{
+            background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), url("images/") center/cover no-repeat;
+            color: #fff;
+            padding: 40px 60px;
+        }
+        .book-form{
+            display: grid;
+        }
+        .form-item{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .book-form input[type = "submit"]{
+            margin: 18px 0 0 0;
+            background: var(--dark);
+            color: #fff;
+            border: 1px solid #fff;
+        }
+        .book-form label, .book-form input{
+            width: 100%;
+        }
+        .book-form label{
+            font-weight: 600;
+            word-spacing: 5px;
+            padding-bottom: 8px;
+        }
+        .book-form input:not(.btn){
+            margin: 4px 0 16px 0;
+            padding: 12px 15px;
+            border-radius: 5px;
+            font-size: 17px;
+            border: none;
+        }
+        .book-form input:focus{
+            outline: 0;
+            box-shadow: 0 0 7px rgba(0, 0, 0, 0.4);
+        }
+        @media(min-width: 768px){
+            .book-form{
+                grid-template-columns: repeat(2, 1fr);
+                grid-gap: 24px;
+            }
+        }
+        @media(min-width: 1170px){
+            .book-form{
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        @media(min-width: 1370px){
+            .book-form{
+                grid-template-columns: 2fr 2fr 1fr 1fr 1fr 2fr;
+            }
+            .book{
+                height: 40vh;
+                display: grid;
+            }
+        }
+        @media(max-width: 500px){
+            .book{
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+        }
+        
+        /* room */
+        
+        .rooms{
+            margin: 40px 0;
+        }
+        .room{
+            /* margin: 45px 0;
+            padding-bottom: 25px;
+            background: var(--dark);
+            color: #fff; */
+            margin: 20px;
+            background: var(--dark);
+            color: #fff;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+        }
+        .room-text{
+            padding: 5px 20px;
+        }
+        .room-text h3{
+            font-size: 24px;
+        }
+        .room-text ul{
+            list-style-type: none;
+            margin: 15px 0;
+        }
+        .room-text ul li{
+            padding: 7px 0;
+        }
+        .room-text ul li i{
+            color: var(--yellow);
+            margin-right: 10px;
+        }
+        .rate{
+            opacity: 0.8;
+        }
+        .rate span{
+            font-size: 40px;
+            font-weight: 900;
+            color: var(--yellow);
+        }
+        .room-image{
+            overflow: hidden;
+        }
+        .room-image img{
+            transition: var(--transition);
+        }
+        .room-image:hover img{
+            transform: scale(1.1);
+        }
+        @media (min-width: 900px){
+            .rooms-container{
+                display: flex;
+                flex-wrap: wrap;
+            }
+            .room{
+                flex: 0 0 calc(50% - 20px);
+                margin: 10px;
+            }
+        }
+        @media(min-width: 1370px){
+            .rooms-container{
+                flex-direction: column;
+            }
+            .room{
+                display: flex;
+                padding-bottom: 0;
+                margin: 5px 0;
+            }
+            .room-image{
+                flex: 1;
+            }
+            .room-image img{
+                height: 100%;
+            }
+            .room-text{
+                flex: 1;
+            }
+            .room:nth-child(even){
+                flex-direction: row-reverse;
+            }
+        }
+        .customers{
+        
+            margin-top: 40px;
+            padding: 40px ;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("images/Hospital.avif") center/cover no-repeat fixed;
+        }
+        
+        .customer{
+            background: #fff;
+            padding: 35px;
+            text-align: center;
+        
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.75);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .rating{
+            margin: 10px 0;
+            color: var(--yellow);
+        }
+        .customer h3{
+            font-size: 25px;
+        }
+        .customer p{
+            opacity: 0.7;
+            line-height: 1.8;
+            width: 60%;
+            margin: 0 auto;
+        }
+        .customer img{
+            width: 170px;
+            height: 170px;
+            border-radius: 50%;
+            margin: 25px auto;
+        }
+        .customer span{
+            font-weight: 700;
+            opacity: 0.7;
+        }
+        .customer:hover{
+            transform: translateY(-18px);
+        }
+        @media(min-width: 992px){
+            .customers-container{
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                grid-gap: 30px;
+            }
+        }
+        @media(min-width: 1370px){
+            .customers-container{
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        @media(max-width: 500px){
+            .customer p{
+                width: 100%;
+            }
+            .customer img{
+                width: 100px;
+                height: 100px;
+            }
+        }
+        .customers-container {
+            display: flex;
+            flex-wrap: nowrap; /* Prevent wrapping of items */
+            overflow-x: auto; /* Enable horizontal scrolling if necessary */
+            gap: 80px;
+        }
+        
+        .customer {
+            flex: 0 0 auto; /* Ensure items don't grow or shrink */
+            margin-right: 20px; /* Adjust margin between customers */
+        }
+        
+        /* footer */
+        .footer{
+            background: var(--dark);
+            color: #fff;
+            text-align: center;
+        }
+        .footer-container{
+            width: 85vw;
+            margin: 0 auto ;
+            padding: 30px 0;
+        }
+        .footer-container p, .footer-container a, .footer-container span{
+            opacity: 0.8;
+        }
+        .footer a{
+            display: block;
+            color: #fff;
+            text-decoration: none;
+        }
+        .social-icons{
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            padding: 15px 0;
+        }
+        .social-icons li{
+            margin: 0 10px;
+            width: 50px;
+            height: 50px;
+            background: #2e2e2e;
+            border-radius: 50%;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+        .social-icons li:hover{
+            background: #fff;
+            color: #2e2e2e;
+        }
+        .contact-item span{
+            display: block;
+        }
+        @media(min-width: 900px){
+            .footer-container{
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                grid-gap: 20px;
+            }
+        }
+        @media(min-width: 1170px){
+            .footer{
+                text-align: left;
+            }
+            
+        }
+        
+        .showModal{
+            position: fixed;
+            background: transparent;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 5;
+        }
+
+        /* Your remaining CSS code here */
+        /* ... */
+    </style>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://kit.fontawesome.com/dbed6b6114.js" crossorigin="anonymous">
+
+    <!-- Embedded JavaScript -->
+    <script>
+            // JavaScript code from script.js
+            const navBtn = document.getElementById('nav-btn');
+            const cancelBtn = document.getElementById('cancel-btn');
+            const sideNav = document.getElementById('sidenav');
+            const modal = document.getElementById('modal');
+        
+            navBtn.addEventListener("click", function(){
+                sideNav.classList.add('show');
+                modal.classList.add('showModal');
+            });
+        
+            cancelBtn.addEventListener('click', function(){
+                sideNav.classList.remove('show');
+                modal.classList.remove('showModal');
+            });
+        
+            window.addEventListener('click', function(event){
+                if(event.target === modal){
+                    sideNav.classList.remove('show');
+                    modal.classList.remove('showModal');
+                }
+            });
+        
+            var button1 = document.getElementById("button1");
+        
+            // Define the link URLs
+            var link1 = "index.html";
+        
+            // Add click event listeners for each button
+            button1.addEventListener("click", function() {
+                // Redirect to link 1
+                window.open(link1, '_blank');
+            });
+        
+            function scrollToModels() {
+                // Find the target section using its id
+                const modelsSection = document.getElementById('models');
+        
+                // Scroll to the target section with smooth behavior
+                modelsSection.scrollIntoView({ behavior: 'smooth' });
+            }
+        
+    </script>
+
+    <!-- External Styles -->
+    <link rel="shortcut icon" href="images/Logo.png" type="image/x-icon">
+</head>
+
+<body>
+    <header class="header" id="header">
+        <div class="head-top">
+            <div class="site-name">
+                <span>CAPSTONE</span>
+            </div>
+            <div class="site-nav">
+                <span id="nav-btn">MENU <i class="fas fa-bars"></i></span>
+            </div>
+        </div>
+
+        <div class="head-bottom flex">
+            <h2>BRAIN TUMOR DETECTION USING AI & ML</h2>
+            <p>Our AI Platform Offers Rapid And Precise Detection Of Brain Tumors. This Transformative Approach Ensures
+                Proactive & Personalized Care For Improvized Patient Outcomes.</p>
+            <button type="button" class="head-btn" onclick="scrollToModels()">GET STARTED</button>
+        </div>
+    </header>
+    <!-- end of header -->
+
+    <!-- side navbar -->
+    <div class="sidenav" id="sidenav">
+        <span class="cancel-btn" id="cancel-btn">
+            <i class="fas fa-times"></i>
+        </span>
+
+        <ul class="navbar">
+            <li><a href="#header">Home</a></li>
+            <li><a href="#rooms">Models</a></li>
+            <li><a href="#customers">Developers</a></li>
+        </ul>
+    </div>
+    <!-- end of side navbar -->
+    <section class="rooms sec-width" id="models">
+        <section class="rooms sec-width" id="rooms">
+            <div class="title">
+                <h1>Model</h1>
+            </div>
+            <div class="rooms-container">
+                <!-- single room -->
+                <article class="room">
+                    <div class="room-image">
+                        <img src="images/Brain Tumor Detection.jpg" alt="room image">
+                    </div>
+                    <div class="room-text">
+                        <h3>Brain Tumor Detection Using MRI Scans</h3>
+                        <ul>
+                            <li>
+                                <i class="fas fa-arrow-alt-circle-right"></i>
+                                Collect High Quality MRI Scans
+                            </li>
+                            <li>
+                                <i class="fas fa-arrow-alt-circle-right"></i>
+                                3000+ Image Processed During Model Training
+                            </li>
+                            <li>
+                                <i class="fas fa-arrow-alt-circle-right"></i>
+                                Best Accuracy In Our Model
+                            </li>
+                        </ul>
+                        <p></p>
+                        <br>
+                        <a href="index.html" class="head-btn">Click to Test</a>
+
+                    </div>
+                </article>
+
+            </div>
+        </section>
+    </section>
+
+    <section class="customers" id="customers">
+        <div class="sec-width">
+            <div class="title">
+                <h1>Developers</h1>
+            </div>
+            <div class="customers-container">
+                <div class="customer" id="rcard">
+                    <img src="images/Ripan.jpeg" alt="Ripan Saha">
+                    <h3>Ripan Saha</h3>
+                    <ul>
+                        <li class="flex">
+                            <a target="_blank" href="https://www.linkedin.com/in/ripan-saha-5506381b7/">
+                                <i class='fa fa-linkedin-square fa-2x' style='color: #0077b5'></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="customer">
+                    <img src="images/Subhransu.jpeg" alt="Subhransu Sekhar Satapathy">
+                    <h3>Subhransu Sekhar Satapathy</h3>
+                    <ul>
+                        <li class="flex">
+                            <a target="_blank" href="https://www.linkedin.com/in/subhransu12/">
+                                <i class='fa fa-linkedin-square fa-2x' style='color: #0077b5'></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="customer">
+                    <img src="images/Prakhar.jpeg" alt="Prakhar Shandilya">
+                    <h3>Prakhar Shandilya</h3>
+                    <ul>
+                        <li class="flex">
+                            <a target="_blank" href="https://www.linkedin.com/in/prakhar-shandilya-7081071a5/">
+                                <i class='fa fa-linkedin-square fa-2x' style='color: #0077b5'></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="customer">
+                    <img src="images/Satya.jpeg" alt="Satyaswagat Panda">
+                    <h3>Satyaswagat Panda</h3>
+                    <ul>
+                        <li class="flex">
+                            <a target="_blank" href="https://www.linkedin.com/in/satyaswagat-panda/">
+                                <i class='fa fa-linkedin-square fa-2x' style='color: #0077b5'></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="customer">
+                    <img src="images/Nishant.jpeg" alt="Nishant Kumar">
+                    <h3>Nishant Kumar</h3>
+                    <ul>
+                        <li class="flex">
+                            <a target="_blank" href="https://www.linkedin.com/in/nishantk6488/">
+                                <i class='fa fa-linkedin-square fa-2x' style='color: #0077b5'></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="customer">
+                    <img src="images/Akhil.jpeg" alt="Akhil Dubey">
+                    <h3>Akhil Dubey</h3>
+                    <ul>
+                        <li class="flex">
+                            <a target="_blank" href="https://www.linkedin.com/in/akhil-dubey-291504207/">
+                                <i class='fa fa-linkedin-square fa-2x' style='color: #0077b5'></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- end of body content -->
+
+    <!-- footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div>
+                <h2>About Us </h2>
+                <p>Dedicated To revolutionizing Brain Tumor Detection  using Artificial Intelligence and Machine Learning. Our
+                    innovative platform offers rapid & precise diagnosis of Brain Tumors. With a focus on
+                    proactive & personalized care, we aim to improve patient outcomes and move towards a New Era Of
+                    Healthcare Excellence.</p>
+                <ul class="social-icons">
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Your HTML code here -->
+    <!-- HTML code from your original file -->
+
+</body>
+
+</html>

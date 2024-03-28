@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Brain Tumor Detection</title>
+    <!-- Link to Font Awesome for advanced icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -13,37 +15,38 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            background-image: url('Images/background.jpg'); /* Background image URL */
+            background-image: url('Images/brain.gif'); /* Background image URL */
             background-size: cover;
             background-repeat: no-repeat;
         }
         .container {
             max-width: 600px;
             padding: 40px;
-            background-color: rgba(255, 255, 255, 0.8);
+            background-color: rgba(255, 255, 255, 0.9); /* Lighten background */
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             text-align: center;
+            transition: all 0.3s ease; /* Smooth transition */
         }
         h1, h2, p {
             margin-bottom: 20px;
         }
         h1 {
-            color: #333;
+            color: #007bff; /* Change primary color */
             font-size: 36px;
         }
         h2 {
-            color: #555;
+            color: #009688; /* Change secondary color */
             font-size: 24px;
         }
         p {
-            color: #777;
+            color: #444; /* Darken text color */
             font-size: 18px;
         }
         .upload-button {
             display: inline-block;
             padding: 12px 24px;
-            background-color: #007bff;
+            background-color: #4caf50; /* Change button color */
             color: #fff;
             border: none;
             border-radius: 4px;
@@ -52,7 +55,7 @@
             transition: background-color 0.3s ease;
         }
         .upload-button:hover {
-            background-color: #0056b3;
+            background-color: #388e3c; /* Darken button color on hover */
         }
         .result {
             margin-top: 20px;
@@ -65,11 +68,20 @@
             font-size: 14px;
             color: #555;
         }
+        /* Slide animation */
+        .slide-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .slide-out {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Brain Tumor Detection</h1>
+        <h1>Brain Tumor Detection <i class="fas fa-brain"></i></h1> <!-- Advanced icon -->
         <h2>Welcome to Brain Tumor Detection</h2>
         <p>Upload your MRI image and click "Scan MRI" to get started.</p>
         <input type="file" id="fileInput" accept=".jpg, .jpeg, .png, .pdf">
@@ -86,10 +98,14 @@
             if (file) {
                 const pages = ['stage1.html', 'stage2.html', 'stage3.html', 'stage4.html'];
                 const randomPage = pages[Math.floor(Math.random() * pages.length)];
-                window.location.href = randomPage;
+                // Add slide-out animation before redirection
+                document.querySelector('.container').classList.add('slide-out');
+                setTimeout(() => {
+                    window.location.href = randomPage;
+                }, 300); // Delay to match animation duration
             } else {
                 const errorMessage = document.getElementById('errorMessage');
-                errorMessage.innerText = 'Please upload your Brain MRI report.';
+                errorMessage.innerText = 'Please upload your Brain MRI image.';
             }
         }
     </script>

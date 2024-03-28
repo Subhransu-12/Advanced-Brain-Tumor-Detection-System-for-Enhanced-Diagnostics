@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Medical Report - Stage 1 Brain Tumor</title>
+    <!-- Link to Font Awesome for advanced icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -16,15 +18,16 @@
             max-width: 800px;
             margin: 20px auto;
             padding: 20px;
-            background-color: #fff;
+            background-color: rgba(255, 255, 255, 0.9); /* Lighten background */
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease; /* Smooth transition */
         }
         h1, h2, h3, p {
             margin-bottom: 20px;
         }
         h1 {
-            color: #007bff;
+            color: #007bff; /* Change primary color */
             font-size: 36px;
             text-align: center;
             border-bottom: 2px solid #007bff;
@@ -32,15 +35,16 @@
             margin-bottom: 30px;
         }
         h2 {
-            color: #004085;
+            color: #009688; /* Change secondary color */
             font-size: 24px;
         }
         h3 {
-            color: #0056b3;
+            color: #0056b3; /* Change tertiary color */
             font-size: 20px;
         }
         p {
             font-size: 18px;
+            color: #444; /* Darken text color */
         }
         .chart {
             margin-bottom: 40px;
@@ -49,12 +53,8 @@
         .chart img {
             max-width: 100%;
         }
-        .image {
-            margin-bottom: 20px;
-            text-align: center;
-        }
         .btn {
-            background-color: #007bff;
+            background-color: #4caf50; /* Change button color */
             color: #fff;
             padding: 10px 20px;
             border: none;
@@ -65,7 +65,7 @@
             margin: 20px auto;
         }
         .btn:hover {
-            background-color: #0056b3;
+            background-color: #388e3c; /* Darken button color on hover */
         }
         .note {
             font-style: italic;
@@ -79,37 +79,46 @@
             border-top: 1px solid #ddd;
             padding-top: 20px;
         }
+        /* Slide animation */
+        .slide-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .slide-out {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Medical Report - Stage 1 Brain Tumor</h1>
-        <h2>Diagnosis:</h2>
-        <p>A Grade 1 tumor has been detected. These tumors are benign and exhibit slow growth. They are unlikely to spread into surrounding brain tissue.</p>
-        <h3>Treatment Options:</h3>
-        <ul>
-            <li><strong>Surgery:</strong> Complete removal of the tumor through surgery is often the primary treatment.</li>
-            <li><strong>Monitoring:</strong> Regular imaging scans may be conducted to monitor the tumor's growth. Treatment may be initiated if there's evidence of growth.</li>
-        </ul>
-        <h2>Diagnostic Charts</h2>
-        <div class="chart">
-            <p>Chart 1 - Tumor Growth Over Time</p>
-            <img src="Images/chart1.png" alt="Chart 1">
-        </div>
-        <div class="chart">
-            <p>Chart 2 - Comparison of Tumor Characteristics</p>
-            <img src="Images/chart2.png" alt="Chart 2">
-        </div>
-        <div class="chart">
-            <p>Chart 3 - Treatment Response</p>
-            <img src="Images/chart3.png" alt="Chart 3">
-        </div>
-        <p class="note">Note: These charts are illustrative and based on hypothetical data.</p>
-        <button class="btn">Download Full Report</button>
-        <div class="footer">
-            <p>Page 1</p>
-            <p>Created by: Ripan Saha</p>
-        </div>
+<div class="container">
+    <h1>Medical Report - Stage 1 Brain Tumor <i class="fas fa-brain"></i></h1> <!-- Advanced icon -->
+    <h2>Diagnosis:</h2>
+    <p>A Grade 1 tumor has been detected. These tumors are benign and exhibit slow growth. They are unlikely to spread into surrounding brain tissue.</p>
+    <h3>Treatment Options:</h3>
+    <ul>
+        <li><strong>Surgery:</strong> Complete removal of the tumor through surgery is often the primary treatment.</li>
+        <li><strong>Monitoring:</strong> Regular imaging scans may be conducted to monitor the tumor's growth. Treatment may be initiated if there's evidence of growth.</li>
+    </ul>
+    <h2>Diagnostic Charts</h2>
+    <div class="chart">
+        <p>Chart 1 - Tumor Growth Over Time</p>
+        <img src="Images/chart1.png" alt="Chart 1">
     </div>
+    <div class="chart">
+        <p>Chart 2 - Comparison of Tumor Characteristics</p>
+        <img src="Images/chart2.png" alt="Chart 2">
+    </div>
+    <div class="chart">
+        <p>Chart 3 - Treatment Response</p>
+        <img src="Images/chart3.png" alt="Chart 3">
+    </div>
+    <p class="note">Note: These charts are illustrative and based on hypothetical data.</p>
+    <button class="btn">Download Full Report</button>
+    <div class="footer">
+        <p>Page 1</p>
+        <p>Created by: Ripan Saha</p>
+    </div>
+</div>
 </body>
 </html>
